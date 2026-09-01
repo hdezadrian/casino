@@ -99,54 +99,56 @@
 
         </div>
 
+
+        <!-- =========================
+             MÁQUINA DE NATURALEZA
+             ========================= -->
+
+        <div class="game">
+
+            <section class="slot-machine nature-machine">
+
+                <div class="machine-header">
+                    <h1>NATURE</h1>
+                </div>
+
+                <div class="reels-frame">
+
+                    <div class="reel" id="natureReel1">
+                        <span class="symbol">🌳</span>
+                    </div>
+
+                    <div class="reel" id="natureReel2">
+                        <span class="symbol">🍀</span>
+                    </div>
+
+                    <div class="reel" id="natureReel3">
+                        <span class="symbol">🌿</span>
+                    </div>
+
+                </div>
+
+                <div class="casino-name nature-name">
+                    <span>ROYAL</span>
+                    <strong>NATURE</strong>
+                    <span>CASINO</span>
+                </div>
+
+            </section>
+
+            <button class="spin-button nature-button" id="natureSpinButton">
+                SPIN
+            </button>
+
+        </div>
+
     </main>
 
-    <!-- =========================
-     MÁQUINA DE NATURALEZA
-     ========================= -->
-
-<div class="game">
-
-    <section class="slot-machine nature-machine">
-
-        <div class="machine-header">
-            <h1>NATURE</h1>
-        </div>
-
-        <div class="reels-frame">
-
-            <div class="reel" id="natureReel1">
-                <span class="symbol">🌳</span>
-            </div>
-
-            <div class="reel" id="natureReel2">
-                <span class="symbol">🍀</span>
-            </div>
-
-            <div class="reel" id="natureReel3">
-                <span class="symbol">🌿</span>
-            </div>
-
-        </div>
-
-        <div class="casino-name nature-name">
-            <span>ROYAL</span>
-            <strong>NATURE</strong>
-            <span>CASINO</span>
-        </div>
-
-    </section>
-
-    <button class="spin-button nature-button" id="natureSpinButton">
-        SPIN
-    </button>
-
-</div>
 
     <script>
 
         /* =========================
-           SÍMBOLOS
+           FRUTAS
            ========================= */
 
         const fruits = [
@@ -160,6 +162,11 @@
             "🍍"
         ];
 
+
+        /* =========================
+           MAR
+           ========================= */
+
         const seaSymbols = [
             "🐠",
             "🐙",
@@ -170,6 +177,11 @@
             "⚓",
             "🪼"
         ];
+
+
+        /* =========================
+           NATURALEZA
+           ========================= */
 
         const natureSymbols = [
             "🌳",
@@ -204,6 +216,7 @@
             document.querySelector("#seaReel3 .symbol")
         ];
 
+
         /* =========================
            RODILLOS NATURALEZA
            ========================= */
@@ -214,11 +227,10 @@
             document.querySelector("#natureReel3 .symbol")
         ];
 
-const natureButton = document.getElementById("natureSpinButton");
 
         const fruitButton = document.getElementById("spinButton");
         const seaButton = document.getElementById("seaSpinButton");
-        
+        const natureButton = document.getElementById("natureSpinButton");
 
 
         /* =========================
@@ -243,7 +255,6 @@ const natureButton = document.getElementById("natureSpinButton");
             return new Promise(resolve => {
 
                 reel.classList.add("spinning");
-
 
                 const interval = setInterval(() => {
 
@@ -278,7 +289,6 @@ const natureButton = document.getElementById("natureSpinButton");
         async function spinMachine(reels, symbols, button) {
 
             button.disabled = true;
-
 
             const results = await Promise.all([
 
@@ -363,6 +373,7 @@ const natureButton = document.getElementById("natureSpinButton");
             );
 
         });
+
 
         /* =========================
            BOTÓN NATURALEZA
