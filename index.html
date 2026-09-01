@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Casino</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="machines">
+
+        <!-- =========================
+             MÁQUINA DE FRUTAS
+             ========================= -->
+
+        <div class="game">
+
+            <section class="slot-machine fruit-machine">
+
+                <div class="machine-header">
+                    <h1>FRUIT</h1>
+                </div>
+
+                <div class="reels-frame">
+
+                    <div class="reel" id="reel1">
+                        <span class="symbol">🍒</span>
+                    </div>
+
+                    <div class="reel" id="reel2">
+                        <span class="symbol">🍋</span>
+                    </div>
+
+                    <div class="reel" id="reel3">
+                        <span class="symbol">🍊</span>
+                    </div>
+
+                </div>
+
+                <div class="casino-name">
+                    <span>ROYAL</span>
+                    <strong>FRUIT</strong>
+                    <span>CASINO</span>
+                </div>
+
+            </section>
+
+            <button class="spin-button" id="spinButton">
+                SPIN
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             MÁQUINA DEL MAR
+             ========================= -->
+
+        <div class="game">
+
+            <section class="slot-machine sea-machine">
+
+                <div class="machine-header">
+                    <h1>OCEAN</h1>
+                </div>
+
+                <div class="reels-frame">
+
+                    <div class="reel" id="seaReel1">
+                        <span class="symbol">🐠</span>
+                    </div>
+
+                    <div class="reel" id="seaReel2">
+                        <span class="symbol">🐙</span>
+                    </div>
+
+                    <div class="reel" id="seaReel3">
+                        <span class="symbol">🐚</span>
+                    </div>
+
+                </div>
+
+                <div class="casino-name sea-name">
+                    <span>ROYAL</span>
+                    <strong>OCEAN</strong>
+                    <span>CASINO</span>
+                </div>
+
+            </section>
+
+            <button class="spin-button sea-button" id="seaSpinButton">
+                SPIN
+            </button>
+
+        </div>
+
+    </main>
+
+    <!-- =========================
+     MÁQUINA DE NATURALEZA
+     ========================= -->
+
+<div class="game">
+
+    <section class="slot-machine nature-machine">
+
+        <div class="machine-header">
+            <h1>NATURE</h1>
+        </div>
+
+        <div class="reels-frame">
+
+            <div class="reel" id="natureReel1">
+                <span class="symbol">🌳</span>
+            </div>
+
+            <div class="reel" id="natureReel2">
+                <span class="symbol">🍀</span>
+            </div>
+
+            <div class="reel" id="natureReel3">
+                <span class="symbol">🌿</span>
+            </div>
+
+        </div>
+
+        <div class="casino-name nature-name">
+            <span>ROYAL</span>
+            <strong>NATURE</strong>
+            <span>CASINO</span>
+        </div>
+
+    </section>
+
+    <button class="spin-button nature-button" id="natureSpinButton">
+        SPIN
+    </button>
+
+</div>
+
+    <script>
+
+        /* =========================
+           SÍMBOLOS
+           ========================= */
+
+        const fruits = [
+            "🍒",
+            "🍋",
+            "🍊",
+            "🍇",
+            "🍉",
+            "🍎",
+            "🍓",
+            "🍍"
+        ];
+
+        const seaSymbols = [
+            "🐠",
+            "🐙",
+            "🦀",
+            "🐚",
+            "🐳",
+            "🐬",
+            "⚓",
+            "🪼"
+        ];
+
+        const natureSymbols = [
+            "🌳",
+            "🌲",
+            "🌿",
+            "🍀",
+            "🌱",
+            "🍃",
+            "🌻",
+            "🌵"
+        ];
+
+
+        /* =========================
+           RODILLOS FRUTAS
+           ========================= */
+
+        const fruitReels = [
+            document.querySelector("#reel1 .symbol"),
+            document.querySelector("#reel2 .symbol"),
+            document.querySelector("#reel3 .symbol")
+        ];
+
+
+        /* =========================
+           RODILLOS MAR
+           ========================= */
+
+        const seaReels = [
+            document.querySelector("#seaReel1 .symbol"),
+            document.querySelector("#seaReel2 .symbol"),
+            document.querySelector("#seaReel3 .symbol")
+        ];
+
+        /* =========================
+           RODILLOS NATURALEZA
+           ========================= */
+
+        const natureReels = [
+            document.querySelector("#natureReel1 .symbol"),
+            document.querySelector("#natureReel2 .symbol"),
+            document.querySelector("#natureReel3 .symbol")
+        ];
+
+const natureButton = document.getElementById("natureSpinButton");
+
+        const fruitButton = document.getElementById("spinButton");
+        const seaButton = document.getElementById("seaSpinButton");
+        
+
+
+        /* =========================
+           SÍMBOLO ALEATORIO
+           ========================= */
+
+        function randomSymbol(symbols) {
+
+            return symbols[
+                Math.floor(Math.random() * symbols.length)
+            ];
+
+        }
+
+
+        /* =========================
+           GIRAR RODILLO
+           ========================= */
+
+        function spinReel(reel, symbols, duration) {
+
+            return new Promise(resolve => {
+
+                reel.classList.add("spinning");
+
+
+                const interval = setInterval(() => {
+
+                    reel.textContent = randomSymbol(symbols);
+
+                }, 90);
+
+
+                setTimeout(() => {
+
+                    clearInterval(interval);
+
+                    const result = randomSymbol(symbols);
+
+                    reel.textContent = result;
+
+                    reel.classList.remove("spinning");
+
+                    resolve(result);
+
+                }, duration);
+
+            });
+
+        }
+
+
+        /* =========================
+           GIRAR MÁQUINA
+           ========================= */
+
+        async function spinMachine(reels, symbols, button) {
+
+            button.disabled = true;
+
+
+            const results = await Promise.all([
+
+                spinReel(
+                    reels[0],
+                    symbols,
+                    1200
+                ),
+
+                spinReel(
+                    reels[1],
+                    symbols,
+                    1700
+                ),
+
+                spinReel(
+                    reels[2],
+                    symbols,
+                    2200
+                )
+
+            ]);
+
+
+            /* PREMIO */
+
+            if (
+                results[0] === results[1] &&
+                results[1] === results[2]
+            ) {
+
+                reels.forEach(reel => {
+
+                    reel.classList.add("win");
+
+                });
+
+
+                setTimeout(() => {
+
+                    reels.forEach(reel => {
+
+                        reel.classList.remove("win");
+
+                    });
+
+                }, 1800);
+
+            }
+
+
+            button.disabled = false;
+
+        }
+
+
+        /* =========================
+           BOTÓN FRUTAS
+           ========================= */
+
+        fruitButton.addEventListener("click", () => {
+
+            spinMachine(
+                fruitReels,
+                fruits,
+                fruitButton
+            );
+
+        });
+
+
+        /* =========================
+           BOTÓN MAR
+           ========================= */
+
+        seaButton.addEventListener("click", () => {
+
+            spinMachine(
+                seaReels,
+                seaSymbols,
+                seaButton
+            );
+
+        });
+
+        /* =========================
+           BOTÓN NATURALEZA
+           ========================= */
+
+        natureButton.addEventListener("click", () => {
+
+            spinMachine(
+                natureReels,
+                natureSymbols,
+                natureButton
+            );
+
+        });
+
+    </script>
+
+</body>
+
+</html>

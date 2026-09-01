@@ -1,0 +1,668 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-image: url("media/fondo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+
+/* ==============================
+   CONTENEDOR DE LAS MÁQUINAS
+   ============================== */
+
+.machines {
+    position: absolute;
+
+    left: 4vw;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+
+    gap: 45px;
+}
+
+
+/* ==============================
+   JUEGO
+   ============================== */
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+/* ==============================
+   MÁQUINA
+   ============================== */
+
+.slot-machine {
+    position: relative;
+
+    width: 520px;
+
+    padding: 28px 30px 32px;
+
+    border-radius: 70px;
+
+    background: linear-gradient(
+        135deg,
+        #7b0808 0%,
+        #c71919 20%,
+        #e12a2a 50%,
+        #bd1515 80%,
+        #680505 100%
+    );
+
+    border: 8px solid #d8ad38;
+
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.65),
+        inset 5px 5px 10px rgba(255, 255, 255, 0.12),
+        inset -8px -8px 15px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ==============================
+   CABECERA
+   ============================== */
+
+.machine-header {
+    height: 90px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        180deg,
+        #8e1111,
+        #520303
+    );
+
+    border: 4px solid #f1cc55;
+
+    box-shadow:
+        inset 0 0 20px rgba(0, 0, 0, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.35);
+}
+
+
+.machine-header h1 {
+    color: #ffd94d;
+
+    font-size: 42px;
+    font-weight: 900;
+
+    letter-spacing: 10px;
+
+    text-shadow:
+        2px 3px 0 #650707,
+        0 0 12px rgba(255, 216, 70, 0.7);
+}
+
+
+/* ==============================
+   MARCO DE LOS RODILLOS
+   ============================== */
+
+.reels-frame {
+    display: flex;
+    justify-content: center;
+
+    gap: 13px;
+
+    padding: 20px;
+
+    border-radius: 32px;
+
+    background: #260303;
+
+    border: 6px solid #efc94c;
+
+    box-shadow:
+        inset 0 0 25px #000,
+        0 7px 12px rgba(0, 0, 0, 0.45);
+}
+
+
+/* ==============================
+   RODILLOS
+   ============================== */
+
+.reel {
+    width: 135px;
+    height: 155px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #ededed 45%,
+        #cfcfcf
+    );
+
+    border: 5px solid #a98220;
+
+    box-shadow:
+        inset 0 0 18px rgba(0, 0, 0, 0.35),
+        0 5px 7px rgba(0, 0, 0, 0.55);
+}
+
+
+.symbol {
+    font-size: 78px;
+
+    line-height: 1;
+
+    user-select: none;
+}
+
+
+/* ==============================
+   ANIMACIÓN DE GIRO
+   ============================== */
+
+.spinning {
+    animation: reel-spin 0.12s linear infinite;
+}
+
+
+@keyframes reel-spin {
+
+    0% {
+        transform: translateY(-20px) scale(0.95);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateY(20px) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-20px) scale(0.95);
+        opacity: 0.5;
+    }
+
+}
+
+
+/* ==============================
+   NOMBRE DEL CASINO
+   ============================== */
+
+.casino-name {
+    height: 95px;
+
+    margin-top: 25px;
+
+    padding: 0 22px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 9px;
+
+    border-radius: 45px;
+
+    background: linear-gradient(
+        180deg,
+        #700707,
+        #400202
+    );
+
+    border: 4px solid #d5aa36;
+
+    box-shadow:
+        inset 0 0 18px rgba(0, 0, 0, 0.75);
+}
+
+
+.casino-name span,
+.casino-name strong {
+    font-family: "Palatino Linotype", Palatino, serif;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    color: #f4d05a;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        1px 1px 0 #670707;
+}
+
+
+/* ==============================
+   BOTÓN
+   ============================== */
+
+.spin-button {
+    min-width: 220px;
+
+    padding: 17px 50px;
+
+    border: 4px solid #f1c84a;
+
+    border-radius: 999px;
+
+    background: linear-gradient(
+        180deg,
+        #ff5555,
+        #c40000
+    );
+
+    color: white;
+
+    font-size: 22px;
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 0 #650000,
+        0 12px 20px rgba(0, 0, 0, 0.5);
+
+    transition:
+        transform 0.1s,
+        box-shadow 0.1s,
+        filter 0.2s;
+}
+
+
+.spin-button:hover {
+    filter: brightness(1.12);
+}
+
+
+.spin-button:active {
+    transform: translateY(6px);
+
+    box-shadow:
+        0 1px 0 #650000,
+        0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+
+.spin-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* ==============================
+   MÁQUINA DEL MAR
+   ============================== */
+
+.sea-machine {
+    background: linear-gradient(
+        135deg,
+        #043b66 0%,
+        #087fb5 25%,
+        #12a9d1 50%,
+        #0879a8 75%,
+        #032d52 100%
+    );
+}
+
+
+/* CABECERA DEL MAR */
+
+.sea-machine .machine-header {
+    background: linear-gradient(
+        180deg,
+        #075c88,
+        #023452
+    );
+
+    border-color: #5bdcff;
+}
+
+
+.sea-machine .machine-header h1 {
+    color: #8deaff;
+
+    text-shadow:
+        2px 3px 0 #03405f,
+        0 0 12px rgba(80, 220, 255, 0.8);
+}
+
+
+/* MARCO DEL MAR */
+
+.sea-machine .reels-frame {
+    background: #021e31;
+
+    border-color: #5bdcff;
+}
+
+
+/* RODILLOS DEL MAR */
+
+.sea-machine .reel {
+    border-color: #1689ad;
+}
+
+
+/* NOMBRE DEL MAR */
+
+.sea-name {
+    background: linear-gradient(
+        180deg,
+        #07577d,
+        #02344e
+    );
+
+    border-color: #58d9f5;
+}
+
+
+.sea-name span,
+.sea-name strong {
+    color: #9beeff;
+
+    text-shadow:
+        1px 1px 0 #03405f;
+}
+
+
+/* BOTÓN DEL MAR */
+
+.sea-button {
+    background: linear-gradient(
+        180deg,
+        #16c7ef,
+        #0879ad
+    );
+
+    border-color: #70e5ff;
+
+    box-shadow:
+        0 7px 0 #034d70,
+        0 12px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+.sea-button:hover {
+    filter: brightness(1.12);
+}
+
+
+/* ==============================
+   ANIMACIÓN DE PREMIO
+   ============================== */
+
+.win {
+    animation: winning 0.3s ease-in-out infinite alternate;
+}
+
+
+@keyframes winning {
+
+    from {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+
+    to {
+        transform: scale(1.08);
+        filter: brightness(1.6);
+    }
+
+}
+
+
+/* ==============================
+   PANTALLAS MEDIANAS
+   ============================== */
+
+@media (max-width: 1200px) {
+
+    .machines {
+        left: 2vw;
+
+        gap: 20px;
+
+        transform: translateY(-50%) scale(0.82);
+
+        transform-origin: left center;
+    }
+
+}
+
+
+/* ==============================
+   MÓVIL
+   ============================== */
+
+@media (max-width: 700px) {
+
+    body {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+
+    .machines {
+        position: static;
+
+        min-height: 100vh;
+
+        padding: 30px 15px;
+
+        transform: none;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 35px;
+    }
+
+
+    .game {
+        transform: none;
+    }
+
+
+    .slot-machine {
+        width: 92vw;
+
+        padding: 20px;
+
+        border-radius: 50px;
+    }
+
+
+    .machine-header {
+        height: 70px;
+    }
+
+
+    .machine-header h1 {
+        font-size: 30px;
+
+        letter-spacing: 6px;
+    }
+
+
+    .reels-frame {
+        gap: 7px;
+
+        padding: 12px;
+
+        border-radius: 24px;
+    }
+
+
+    .reel {
+        width: 27vw;
+        height: 30vw;
+
+        border-radius: 15px;
+    }
+
+
+    .symbol {
+        font-size: 14vw;
+    }
+
+
+    .casino-name {
+        height: 70px;
+
+        padding: 0 12px;
+
+        gap: 6px;
+    }
+
+
+    .casino-name span,
+    .casino-name strong {
+        font-size: 14px;
+
+        letter-spacing: 1px;
+    }
+
+
+    .spin-button {
+        min-width: 180px;
+
+        padding: 14px 40px;
+
+        font-size: 18px;
+    }
+
+}
+
+/* ==============================
+   MÁQUINA DE NATURALEZA
+   ============================== */
+
+.nature-machine {
+    background: linear-gradient(
+        135deg,
+        #123d18 0%,
+        #28752c 25%,
+        #4fa83f 50%,
+        #26752b 75%,
+        #0d3513 100%
+    );
+}
+
+
+/* CABECERA */
+
+.nature-machine .machine-header {
+    background: linear-gradient(
+        180deg,
+        #286b29,
+        #123b16
+    );
+
+    border-color: #9bd34d;
+}
+
+
+.nature-machine .machine-header h1 {
+    color: #c8f276;
+
+    text-shadow:
+        2px 3px 0 #245218,
+        0 0 12px rgba(160, 240, 80, 0.8);
+}
+
+
+/* MARCO */
+
+.nature-machine .reels-frame {
+    background: #102712;
+
+    border-color: #a6d84c;
+}
+
+
+/* RODILLOS */
+
+.nature-machine .reel {
+    border-color: #5b9630;
+}
+
+
+/* NOMBRE */
+
+.nature-name {
+    background: linear-gradient(
+        180deg,
+        #286b29,
+        #123b16
+    );
+
+    border-color: #9bd34d;
+}
+
+
+.nature-name span,
+.nature-name strong {
+    color: #c8f276;
+
+    text-shadow:
+        1px 1px 0 #245218;
+}
+
+
+/* BOTÓN */
+
+.nature-button {
+    background: linear-gradient(
+        180deg,
+        #62c94b,
+        #287b2b
+    );
+
+    border-color: #b7e866;
+
+    box-shadow:
+        0 7px 0 #18521c,
+        0 12px 20px rgba(0, 0, 0, 0.5);
+}
+
+
+.nature-button:hover {
+    filter: brightness(1.12);
+}
